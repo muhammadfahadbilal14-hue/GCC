@@ -1,0 +1,1178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GCC | Gully Cricket Council</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#03150a;
+    color:white;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 6%;
+    background:rgba(2,20,9,.96);
+    border-bottom:1px solid #39ed70;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:5px;
+    color:#63ff91;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#63ff91;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at center,#159447,#08702e 30%,#03150a 75%);
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+}
+
+.badge{
+    width:150px;
+    height:150px;
+    margin:auto;
+    border:5px solid white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#12a944,#034719);
+    box-shadow:0 0 25px #45ff7c;
+}
+
+.badge span{
+    font-size:48px;
+    font-weight:900;
+}
+
+.hero h1{
+    font-size:clamp(70px,12vw,145px);
+    letter-spacing:14px;
+    line-height:1;
+    text-shadow:0 5px 25px #000;
+}
+
+.hero h2{
+    font-size:clamp(22px,4vw,40px);
+    color:#c7ffd5;
+}
+
+.hero p{
+    color:#e3ffea;
+    letter-spacing:2px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:28px;
+    padding:14px 30px;
+    border-radius:30px;
+    background:white;
+    color:#075522;
+    text-decoration:none;
+    font-weight:900;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 25px #63ff91;
+}
+
+/* BALL */
+.ball{
+    position:absolute;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#d71920;
+    border:4px solid white;
+    right:12%;
+    top:22%;
+    animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+    50%{
+        transform:translateY(-30px) rotate(180deg);
+    }
+}
+
+/* STICKERS */
+.sticker{
+    position:absolute;
+    padding:10px 18px;
+    border:3px solid white;
+    border-radius:12px;
+    font-size:24px;
+    font-weight:900;
+    z-index:3;
+    animation:bounce 2s infinite alternate;
+}
+
+.six{
+    background:#0aaa45;
+    left:8%;
+    top:30%;
+}
+
+.four{
+    background:#0876d1;
+    right:7%;
+    top:57%;
+}
+
+.wicket{
+    background:#d71920;
+    left:12%;
+    bottom:20%;
+}
+
+@keyframes bounce{
+    from{
+        transform:translateY(0) rotate(-8deg);
+    }
+    to{
+        transform:translateY(-15px) rotate(5deg);
+    }
+}
+
+/* SECTIONS */
+.section{
+    padding:80px 6%;
+}
+
+.title{
+    text-align:center;
+    font-size:44px;
+    color:#63ff91;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#a9cdb2;
+    margin-bottom:45px;
+}
+
+/* PLAYERS */
+.players{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:28px;
+}
+
+.player{
+    background:linear-gradient(145deg,#0b3218,#03180a);
+    border:1px solid #27c95b;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 18px 45px rgba(0,0,0,.4);
+    transition:.35s;
+}
+
+.player:hover{
+    transform:translateY(-10px);
+    border-color:#65ff92;
+    box-shadow:0 20px 55px rgba(40,255,100,.2);
+}
+
+/* KIT */
+.kit-area{
+    height:330px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    position:relative;
+    background:radial-gradient(circle,#146b32,#031b0b);
+}
+
+.kit-area img{
+    width:280px;
+    height:280px;
+    object-fit:contain;
+    filter:drop-shadow(0 15px 15px rgba(0,0,0,.55));
+    transition:.35s;
+}
+
+.player:hover .kit-area img{
+    transform:scale(1.06);
+}
+
+.kit-name{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.85);
+    border:2px solid #61ff8c;
+    border-radius:30px;
+    padding:7px 23px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+/* PLAYER INFO */
+.player-info{
+    padding:24px;
+}
+
+.player-info h3{
+    font-size:29px;
+    color:#70ff98;
+}
+
+.role{
+    display:inline-block;
+    margin-top:8px;
+    padding:7px 15px;
+    border-radius:30px;
+    background:#0ba744;
+    font-weight:bold;
+}
+
+.player-info p{
+    margin-top:15px;
+    color:#ccebd4;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:18px;
+}
+
+.stat{
+    background:#061e0d;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #185f2d;
+}
+
+.stat strong{
+    display:block;
+    color:#65ff91;
+}
+
+/* PAKISTAN */
+.dark{
+    background:linear-gradient(135deg,#052d14,#011108);
+}
+
+.history{
+    max-width:1100px;
+    margin:auto;
+    background:rgba(255,255,255,.04);
+    border:1px solid #1b7438;
+    border-radius:24px;
+    padding:35px;
+    color:#dff8e5;
+}
+
+/* TIMELINE */
+.timeline{
+    max-width:950px;
+    margin:45px auto 0;
+    border-left:4px solid #27c45d;
+    padding-left:28px;
+}
+
+.event{
+    background:#092b15;
+    border:1px solid #1f8240;
+    padding:22px;
+    margin-bottom:20px;
+    border-radius:14px;
+    position:relative;
+}
+
+.event:before{
+    content:"";
+    width:14px;
+    height:14px;
+    background:#42ff7b;
+    border-radius:50%;
+    position:absolute;
+    left:-37px;
+    top:28px;
+}
+
+.event h3{
+    color:#7dff9e;
+}
+
+/* TROPHIES */
+.trophies{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:28px;
+}
+
+.trophy{
+    padding:32px;
+    text-align:center;
+    border-radius:23px;
+    background:linear-gradient(145deg,#0a5427,#02190a);
+    border:1px solid #42db70;
+    transition:.35s;
+}
+
+.trophy:hover{
+    transform:translateY(-8px);
+}
+
+.trophy-icon{
+    font-size:80px;
+}
+
+.trophy-year{
+    font-size:52px;
+    color:#6cff96;
+    font-weight:900;
+}
+
+.trophy h3{
+    margin:8px 0;
+}
+
+.trophy p{
+    color:#c9e8d1;
+}
+
+/* WINNING MOMENTS */
+.moments{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:28px;
+}
+
+.moment{
+    background:white;
+    color:#063d18;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+
+.moment img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.moment-content{
+    padding:18px;
+}
+
+.moment-content h3{
+    color:#087a35;
+}
+
+/* VIDEOS */
+.videos-wrap{
+    background:#e9fff0;
+    color:#063d18;
+}
+
+.videos{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+}
+
+.video{
+    padding:28px;
+    background:#064d20;
+    color:white;
+    border-radius:20px;
+    text-align:center;
+}
+
+.video a{
+    display:inline-block;
+    margin-top:18px;
+    padding:12px 24px;
+    background:white;
+    color:#075522;
+    border-radius:28px;
+    text-decoration:none;
+    font-weight:800;
+}
+
+/* FOOTER */
+footer{
+    background:#010a04;
+    text-align:center;
+    padding:35px 20px;
+    border-top:1px solid #1f7139;
+}
+
+footer strong{
+    color:#55ff88;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    nav a{
+        margin:4px;
+        font-size:12px;
+    }
+
+    .sticker,
+    .ball{
+        display:none;
+    }
+
+    .section{
+        padding:60px 20px;
+    }
+
+    .title{
+        font-size:34px;
+    }
+
+    .kit-area{
+        height:300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+
+<div class="logo">GCC</div>
+
+<div>
+<a href="#players">PLAYERS</a>
+<a href="#pakistan">PAKISTAN</a>
+<a href="#worldcups">TROPHIES</a>
+<a href="#moments">MOMENTS</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="ball"></div>
+
+<div class="sticker six">💥 SIX!</div>
+<div class="sticker four">🔥 FOUR!</div>
+<div class="sticker wicket">⚡ WICKET!</div>
+
+<div class="hero-content">
+
+<div class="badge">
+<span>GCC</span>
+</div>
+
+<h1>GCC</h1>
+
+<h2>GULLY CRICKET COUNCIL</h2>
+
+<p>
+PLAY • COMPETE • RESPECT • BECOME A LEGEND
+</p>
+
+<a class="btn" href="#players">
+ENTER THE GCC ARENA 🏏
+</a>
+
+</div>
+
+</section>
+
+
+<!-- PLAYERS -->
+<section class="section" id="players">
+
+<h2 class="title">GCC LEGENDS</h2>
+
+<p class="subtitle">
+One kit. One team. One GCC.
+</p>
+
+<div class="players">
+
+
+<!-- ALI -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+ALI
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Ali</h3>
+
+<span class="role">
+⚡ FAST BOWLER
+</span>
+
+<p>
+Ali leads the GCC pace attack, bringing energy and attacking intent when the team needs a breakthrough.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Pace Attack
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Fast Bowling
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- FAHAD -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+FAHAD
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Fahad</h3>
+
+<span class="role">
+🔥 FAST BOWLER
+</span>
+
+<p>
+Fahad is an attacking pace option whose job is to create pressure and hunt for important wickets.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Strike Bowler
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Fast Bowling
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- KALEEM -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+KALEEM
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Kaleem</h3>
+
+<span class="role">
+🌀 SPINNER
+</span>
+
+<p>
+Kaleem gives GCC a change of pace, using spin and variation to build pressure and create chances.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Spin Attack
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Spin Bowling
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- RAHEEL -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+RAHEEL
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Raheel</h3>
+
+<span class="role">
+🛡️ DEFENSIVE BATSMAN
+</span>
+
+<p>
+Raheel is the steady presence in the batting line-up, focused on protecting his wicket and building an innings.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Anchor
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Defensive Batting
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- KHUZAMA -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+KHUZAMA
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Khuzama</h3>
+
+<span class="role">
+💥 HITTER
+</span>
+
+<p>
+Khuzama is GCC's attacking batter, looking to find boundaries, hit sixes and finish innings strongly.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Power Hitter
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Attacking Batting
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- UMAR -->
+<div class="player">
+
+<div class="kit-area">
+
+<img src="image.png" alt="GCC cricket kit">
+
+<div class="kit-name">
+UMAR
+</div>
+
+</div>
+
+<div class="player-info">
+
+<h3>Umar</h3>
+
+<span class="role">
+🎯 MEDIUM BOWLER
+</span>
+
+<p>
+Umar provides control for GCC with accurate medium pace and a focus on keeping the batting side under pressure.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>ROLE</strong>
+Control Bowler
+</div>
+
+<div class="stat">
+<strong>STYLE</strong>
+Medium Pace
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PAKISTAN HISTORY -->
+<section class="section dark" id="pakistan">
+
+<h2 class="title">
+🇵🇰 PAKISTAN CRICKET
+</h2>
+
+<p class="subtitle">
+A legendary cricketing journey
+</p>
+
+<div class="history">
+
+<p>
+Pakistan entered Test cricket in 1952 and developed a proud tradition of producing outstanding batsmen, fast bowlers, spinners and all-rounders.
+</p>
+
+<br>
+
+<p>
+Pakistan's greatest ODI World Cup achievement came in 1992. Led by Imran Khan, Pakistan defeated England in the final at Melbourne and became world champions.
+</p>
+
+<br>
+
+<p>
+Pakistan later won the ICC Men's T20 World Cup in 2009, defeating Sri Lanka in the final at Lord's. In 2017, Pakistan also won the ICC Champions Trophy, defeating India in the final.
+</p>
+
+</div>
+
+
+<div class="timeline">
+
+<div class="event">
+
+<h3>1952 — Test Cricket Begins</h3>
+
+<p>
+Pakistan played its first Test against India in Delhi.
+</p>
+
+</div>
+
+
+<div class="event">
+
+<h3>1992 — ODI World Champions</h3>
+
+<p>
+Imran Khan's Pakistan defeated England by 22 runs in the World Cup final.
+</p>
+
+</div>
+
+
+<div class="event">
+
+<h3>2009 — T20 World Champions</h3>
+
+<p>
+Pakistan defeated Sri Lanka by eight wickets in the T20 World Cup final.
+</p>
+
+</div>
+
+
+<div class="event">
+
+<h3>2017 — Champions Trophy Winners</h3>
+
+<p>
+Pakistan defeated India by 180 runs in the Champions Trophy final.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TROPHIES -->
+<section class="section" id="worldcups">
+
+<h2 class="title">
+🏆 PAKISTAN WORLD CUP GLORY
+</h2>
+
+<p class="subtitle">
+Pakistan's major ICC men's titles
+</p>
+
+<div class="trophies">
+
+
+<div class="trophy">
+
+<div class="trophy-icon">🏆</div>
+
+<div class="trophy-year">
+1992
+</div>
+
+<h3>
+ODI WORLD CUP
+</h3>
+
+<p>
+Pakistan won its first Men's Cricket World Cup under captain Imran Khan.
+</p>
+
+<br>
+
+<strong>
+🇵🇰 Beat England by 22 runs
+</strong>
+
+</div>
+
+
+<div class="trophy">
+
+<div class="trophy-icon">🏆</div>
+
+<div class="trophy-year">
+2009
+</div>
+
+<h3>
+T20 WORLD CUP
+</h3>
+
+<p>
+Pakistan won the ICC Men's T20 World Cup in England under captain Younis Khan.
+</p>
+
+<br>
+
+<strong>
+🇵🇰 Beat Sri Lanka by 8 wickets
+</strong>
+
+</div>
+
+
+<div class="trophy">
+
+<div class="trophy-icon">🏆</div>
+
+<div class="trophy-year">
+2017
+</div>
+
+<h3>
+CHAMPIONS TROPHY
+</h3>
+
+<p>
+Pakistan won another major ICC title after defeating India in the final.
+</p>
+
+<br>
+
+<strong>
+🇵🇰 Won by 180 runs
+</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WINNING MOMENTS -->
+<section class="section" id="moments">
+
+<h2 class="title">
+🔥 PAKISTAN WINNING MOMENTS
+</h2>
+
+<p class="subtitle">
+Memorable chapters in Pakistan cricket
+</p>
+
+<div class="moments">
+
+<div class="moment">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Imran_Khan_1992_World_Cup.jpg/800px-Imran_Khan_1992_World_Cup.jpg"
+alt="Pakistan 1992 World Cup">
+
+<div class="moment-content">
+
+<h3>
+🏆 1992 World Cup
+</h3>
+
+<p>
+Pakistan's historic first ODI World Cup triumph.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="moment">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Lords_Cricket_Ground.jpg/800px-Lords_Cricket_Ground.jpg"
+alt="Lord's cricket ground">
+
+<div class="moment-content">
+
+<h3>
+🏆 2009 T20 World Cup
+</h3>
+
+<p>
+Pakistan lifted the T20 World Cup at Lord's.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="moment">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/ICC_Champions_Trophy_2017.jpg/800px-ICC_Champions_Trophy_2017.jpg"
+alt="Champions Trophy">
+
+<div class="moment-content">
+
+<h3>
+🏆 2017 Champions Trophy
+</h3>
+
+<p>
+Pakistan won another major ICC title in a memorable final.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VIDEOS -->
+<section class="section videos-wrap">
+
+<h2 class="title">
+🎬 PAKISTAN CRICKET VIDEOS
+</h2>
+
+<p class="subtitle">
+Watch Pakistan cricket content
+</p>
+
+<div class="videos">
+
+
+<div class="video">
+
+<h3>
+🇵🇰 Pakistan Cricket
+</h3>
+
+<p>
+Official Pakistan Cricket videos, interviews and highlights.
+</p>
+
+<a
+href="https://www.youtube.com/@PakistanCricketOfficial"
+target="_blank">
+
+WATCH ▶
+
+</a>
+
+</div>
+
+
+<div class="video">
+
+<h3>
+🏆 1992 World Cup
+</h3>
+
+<p>
+Explore the famous 1992 Pakistan World Cup campaign.
+</p>
+
+<a
+href="https://www.youtube.com/results?search_query=Pakistan+1992+World+Cup"
+target="_blank">
+
+WATCH ▶
+
+</a>
+
+</div>
+
+
+<div class="video">
+
+<h3>
+🔥 Pakistan Highlights
+</h3>
+
+<p>
+Explore Pakistan cricket highlights and official content.
+</p>
+
+<a
+href="https://www.youtube.com/@PakistanCricketOfficial"
+target="_blank">
+
+WATCH ▶
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<p>
+© 2026 <strong>GCC — Gully Cricket Council</strong>
+</p>
+
+<p>
+🏏 PLAY HARD • 🟢 STAY UNITED • 🏆 BECOME LEGENDARY
+</p>
+
+</footer>
+
+</body>
+</html>
